@@ -1,0 +1,41 @@
+# ComfyUI-GEM-X — pip requirements
+# Install: pip install -c /workspace/torch-constraint.txt -r requirements.txt
+# torch/torchvision NOT listed — image pins 2.4.1+cu124 (see torch-constraint.txt).
+# lightning 2.6.1 is torch>=2.1.0 compatible; tested against 2.4.1+cu124 on this box.
+
+# Core ML frameworks
+lightning==2.6.1
+hydra-core==1.3.0
+hydra-colorlog==1.2.0
+timm==0.6.7
+
+# Vision / video processing
+opencv-python>=4.8
+einops>=0.7
+scipy>=1.10
+imageio>=2.30
+av>=12.0
+
+# SOMA body model (auto-downloads assets from HuggingFace on first use)
+py-soma-x
+
+# GEM-X vendored package — installed as editable from gemx_src/
+# (handled by ComfyUI-GEM-X __init__.py; not pip-installed separately)
+
+# HuggingFace for model download
+huggingface_hub>=0.20
+safetensors>=0.4
+
+# ONNX runtime — needed by YOLOX person detector (yolox_detector.py)
+onnxruntime-gpu>=1.17
+
+# Misc
+numpy>=1.23
+rich>=12.0
+tqdm>=4.60
+
+# video I/O — gem.utils.video_io_utils does `import ffmpeg` (shells out to ffmpeg binary)
+ffmpeg-python==0.2.0
+
+# SAM-3D-Body image-feature stage imports braceexpand (else GEM-X zero-fills features)
+braceexpand
